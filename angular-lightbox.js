@@ -53,7 +53,23 @@
 			element.css({
 				textDecoration: "none",
 			});
-			element.on('click', function(){
+			element.on('click', function(event){
+				event.preventDefault();
+				var overlay = angular.element('<div style=" \
+					position: absolute; \
+					top: 0; \
+					left: 0; \
+					z-index: 0; \
+					text-align: center; \
+					width: 100%; \
+					height: 100%; \
+					background-color: rgba(0,0,0,.5); \
+				" \
+				><img style=" \
+					margin-top:40px; \
+				" \
+				src="' + scope.lb.src + '" /></div>');
+				element.parent().append(overlay);
 				console.log(scope.lb.src);
 			});
 		}
