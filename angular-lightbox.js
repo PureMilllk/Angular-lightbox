@@ -7,58 +7,103 @@
 
 ;(function(angular, undefined){'use strict';
 
-angular.module('angularLightbox', [])
+	angular.module('angularLightbox', [])
 
-	.directive('ngLightbox', ['$window', function($window){
+	// wrapper
+	.directive('lbCellRoot', ['$window', function($window){
+
+		function link(scope, element, attrs){
+			element.css({
+				listStyle:"none",
+				margin: "0 auto",
+				padding: "0",
+				display: "block",
+				maxWidth: "780px",
+				textAlign: "center",
+			});
+		}
 
 		return {
-			require: 'ngLightbox',
-       		restrict: 'A',
-       		controller: ['$scope', '$log', function($scope, $log){
-       			$log.log($scope);
-       			$scope.innerScopeHelperFunc = function(src){
-       				var modalElem = document.createElement("div");
-       				var img = document.createElement("img");
-       				img.src = src;
-       				modalElem.appendChild(img);
-       				document.body.appendChild(modalElem);
-       				modalElem.style.position = "absolute";
-       				//modalElem.style.display = "table";
-       				modalElem.style.backgroundColor = "rgba(0,0,0,0.5)";
-       				modalElem.style.zIndex = "1000";
-       				modalElem.style.width = "100%";
-       				modalElem.style.height = "100%";
-       				modalElem.style.top = "0";
-       				modalElem.style.left = "0";
-       				modalElem.style.textAlign = "center";
-       				modalElem.setAttribute('ng-click','outterScopeCloseHelperFunc()');
-       				img.style.marginTop = "50px";
-       				//img.style.display = "table-cell";
-       				//img.style.verticalAlign = "middle";
-
-       			};
-
-       		}]
-		};
+			link: link
+		}
 
 	}])
 
-	.directive('lbCell', ['$window', function($window){
+	// list item
+	.directive('lbCellRoom', ['$window', function($window){
+
+		function link(scope, element, attrs){
+			element.css({
+				display: "inline-block",
+				padding: "8px",
+				background:"white",
+				margin:"10px",
+			});
+		}
 
 		return {
-			require: 'lbCell',
-			restrict: 'AE',
-			template: '\
-				<li ng-repeat="lb in lbImgs">\
-					<a href="" ng-click="innerScopeHelperFunc(lb.src);">\
-						<img src="{{lb.src}}" alt="{{lb.alt}}">\
+			link: link
+		}
+	}])
+
+	// anchor
+	.directive('lbCellAnchor', ['$window', function($window){
+
+		function link(scope, element, attrs){
+			element.css({
+				textDecoration: "none",
+			});
+
+		}
+
+		return {
+			link: link
+		}
+
+	}])
+
+	// img
+	.directive('lbCellImg', ['$window', function($window){
+
+		function link(scope, element, attrs){
+			element.css({
+				display: "block",
+				width: "100px",
+			});
+
+		}
+
+		return {
+			link: link
+		}
+
+	}])
+
+	// merge
+	.directive('lbCell', ['$window', function($window){
+
+		function link(scope, element, attrs){
+		}
+
+		var	restrict = 'AE',
+			template = '\
+				<li lb-cell-room ng-repeat="lb in lightboxImgs">\
+					<a href="">\
+						<img lb-cell-img src="{{lb.src}}" alt="{{lb.alt}}">\
 					</a>\
 				</li>',
-			replace: true,
-			scope: {
-				lbImgs: "="
-			}
+			scope = {
+				lightboxImgs: "="
+			},
+			replace = true;
 
+		// return static format
+		return {
+			restrict: restrict,
+			template: template,
+			replace: replace,
+			scope: scope,
+			link: link
 		};
 	}])
 

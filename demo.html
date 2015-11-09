@@ -3,18 +3,25 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Angular-lightbox</title>
-	<link rel="stylesheet" href="css/style.css">
 	<script src="angular.min.js"></script>
 	<script src="angular-lightbox.js"></script>
+	<style>
+	body {
+		font-family: sans-serif;
+		background: #0076A3;
+	}
+	h1 {
+		color: #fff;
+		text-align: center
+	}
+	</style>
 </head>
 <body>
 
-	<h1>Image Gallery</h1>
-	<div ng-controller="ctrl">
-		<ul ng-lightbox>
-			<lb-cell lb-imgs="lightboxImages"></lb-cell>
-		</ul>
+	<div lb-cell-root ng-controller="ctrl">
+		<lb-cell lightbox-imgs="lightboxImages"></lb-cell>
 	</div>
+
 	<script src="demo.js"></script>
 </body>
 </html>
