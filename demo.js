@@ -2,7 +2,7 @@ var app = angular.module('demoapp', ['angularLightbox']);
 
 app.controller('ctrl', ['$scope', function($scope){
 
-	$scope.lbImages = [
+	$scope.lightboxImages = [
 		{
 			src: "images/refferal_machine.png"
 		},
