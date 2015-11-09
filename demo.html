@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="demoapp">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular-lightbox</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="angular.min.js"></script>
+	<script src="angular-lightbox.js"></script>
+</head>
+<body>
+
+	<h1>Image Gallery</h1>
+	<div ng-controller="ctrl">
+		<ul ng-lb>
+			<lb-cell lb-imgs="lbImages"></lb-cell>
+		</ul>
+	</div>
+	<script src="demo.js"></script>
+</body>
+</html>
