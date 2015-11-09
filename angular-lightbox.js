@@ -53,7 +53,9 @@
 			element.css({
 				textDecoration: "none",
 			});
-
+			element.on('click', function(){
+				console.log(scope.lb.src);
+			});
 		}
 
 		return {
@@ -86,11 +88,11 @@
 		}
 
 		var	restrict = 'AE',
-			template = '\
-				<li lb-cell-room ng-repeat="lb in lightboxImgs">\
-					<a href="">\
-						<img lb-cell-img src="{{lb.src}}" alt="{{lb.alt}}">\
-					</a>\
+			template = ' \
+				<li lb-cell-room ng-repeat="lb in lightboxImgs"> \
+					<a lb-cell-anchor href=""> \
+						<img lb-cell-img src="{{lb.src}}" alt="{{lb.alt}}"> \
+					</a> \
 				</li>',
 			scope = {
 				lightboxImgs: "="

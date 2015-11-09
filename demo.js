@@ -4,34 +4,34 @@ app.controller('ctrl', ['$scope', function($scope){
 
 	$scope.lightboxImages = [
 		{
-			src: "images/refferal_machine.png"
+			src: "images/1.png"
 		},
 		{
-			src: "images/space-juice.png"
+			src: "images/2.png"
 		},
 		{
-			src: "images/education.png"
+			src: "images/3.png"
 		},
 		{
-			src: "images/copy_mcrepeatsalot.png"
+			src: "images/4.png"
 		},
 		{
-			src: "images/sebastian.png"
+			src: "images/5.png"
 		},
 		{
-			src: "images/skill-polish.png"
+			src: "images/6.png"
 		},
 		{
-			src: "images/chuck.png"
+			src: "images/7.png"
 		},
 		{
-			src: "images/library.png"
+			src: "images/8.png"
 		},
 		{
-			src: "images/boat.png"
+			src: "images/9.png"
 		},
 		{
-			src: "images/illustrator_foundations.png"
+			src: "images/10.png"
 		},
 	];
-}])
+}]);
