@@ -1,0 +1,11 @@
+extends layout
+
+block scripts
+	script(src='javascripts/angular.min.js')
+	script(src='javascripts/angular-lightbox.js')
+	
+block content
+	h1= title
+	div(lb-cell-root ng-controller="ctrl")
+		lb-cell(lightbox-imgs="lightboxImages")
+	script(src='javascripts/demo.js')
