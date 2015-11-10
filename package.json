@@ -1,6 +1,6 @@
 {
   "name": "angular-lightbox",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "AngularJS directive for lightbox effect.",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/PureMilllk/Angular-lightbox/issues"
   },
-  "homepage": "https://github.com/PureMilllk/Angular-lightbox#readme"
+  "homepage": "https://github.com/PureMilllk/Angular-lightbox#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
 }

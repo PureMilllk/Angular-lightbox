@@ -9,10 +9,14 @@
 
 	angular.module('angularLightbox', [])
 
-	// wrapper
-	.directive('lbCellRoot', ['$window', function($window){
+	.service('lbClickHelper', [function () {
+		this.clicked = false;
+	}])
 
-		function link(scope, element, attrs){
+	// wrapper
+	.directive('lbCellRoot', [function () {
+
+		function link (scope, element, attrs) {
 			element.css({
 				listStyle:"none",
 				margin: "0 auto",
@@ -30,9 +34,9 @@
 	}])
 
 	// list item
-	.directive('lbCellRoom', ['$window', function($window){
+	.directive('lbCellRoom', ['$window', function ($window) {
 
-		function link(scope, element, attrs){
+		function link (scope, element, attrs) {
 			element.css({
 				display: "inline-block",
 				padding: "8px",
@@ -47,16 +51,30 @@
 	}])
 
 	// anchor
-	.directive('lbCellAnchor', ['$window', function($window){
+	.directive('lbCellAnchor', ['$window', '$compile', 'lbClickHelper', function($window, $compile, lbClickHelper){
 
-		function link(scope, element, attrs){
+		function link (scope, element, attrs) {
 			element.css({
 				textDecoration: "none",
 			});
+			scope.removeElem = function (elem) {
+				elem.remove();
+			};
 			element.on('click', function(event){
 				event.preventDefault();
+				lbClickHelper.clicked = true;
 				console.log(scope.lb.src);
+				console.log(lbClickHelper.clicked);
+				if (lbClickHelper.clicked) {
+					var overlay = $compile('<div lb-overlay></div>')(scope);
+					var body = $window.document.querySelector("body");
+					angular.element(body).append(overlay);
+					var overlayImg = $compile('<img lb-overlay-img />')(scope);
+					overlay.append(overlayImg);
+					overlayImg.attr('src',scope.lb.src);
+				}
 			});
+
 		}
 
 		return {
@@ -66,9 +84,9 @@
 	}])
 
 	// img
-	.directive('lbCellImg', ['$window', function($window){
+	.directive('lbCellImg', ['$window', function ($window) {
 
-		function link(scope, element, attrs){
+		function link (scope, element, attrs) {
 			element.css({
 				display: "block",
 				width: "100px",
@@ -84,9 +102,9 @@
 
 	// overlay
 
-	.directive('lbOverlay', ['$window', function($window){
+	.directive('lbOverlay', ['$window', function ($window) {
 
-		function link(scope, element, attrs){
+		function link (scope, element, attrs) {
 			element.css({
 				position: "absolute",
 				top: "0",
@@ -97,6 +115,9 @@
 				height: "100%",
 				backgroundColor: "rgba(0,0,0,.5)"
 			});
+			element.on('click', function () {
+				scope.removeElem(element);
+			})
 		}
 
 		return {
@@ -106,11 +127,24 @@
 	}])
 
 	// overlay img
+	.directive('lbOverlayImg', [function () {
+
+		function link (scope, element, attrs) {
+			element.css({
+				marginTop: "10%"
+			});
+		}
+
+		return {
+			link: link
+		}
+
+	}])
 
 	// merge
-	.directive('lbCell', ['$window', function($window){
+	.directive('lbCell', ['$window', function ($window) {
 
-		function link(scope, element, attrs){
+		function link (scope, element, attrs) {
 		}
 
 		var	restrict = 'AE',
