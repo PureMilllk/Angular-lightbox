@@ -8,11 +8,7 @@
 ;(function(angular, undefined){'use strict';
 
 	angular.module('angularLightbox', [])
-
-	.service('lbClickHelper', [function () {
-		this.clicked = false;
-	}])
-
+	
 	// wrapper
 	.directive('lbCellRoot', [function () {
 
@@ -51,7 +47,7 @@
 	}])
 
 	// anchor
-	.directive('lbCellAnchor', ['$window', '$compile', 'lbClickHelper', function($window, $compile, lbClickHelper){
+	.directive('lbCellAnchor', ['$window', '$compile', function($window, $compile){
 
 		function link (scope, element, attrs) {
 			element.css({
@@ -62,17 +58,12 @@
 			};
 			element.on('click', function(event){
 				event.preventDefault();
-				lbClickHelper.clicked = true;
-				console.log(scope.lb.src);
-				console.log(lbClickHelper.clicked);
-				if (lbClickHelper.clicked) {
-					var overlay = $compile('<div lb-overlay></div>')(scope);
-					var body = $window.document.querySelector("body");
-					angular.element(body).append(overlay);
-					var overlayImg = $compile('<img lb-overlay-img />')(scope);
-					overlay.append(overlayImg);
-					overlayImg.attr('src',scope.lb.src);
-				}
+				var overlay = $compile('<div lb-overlay></div>')(scope);
+				var body = $window.document.querySelector("body");
+				angular.element(body).append(overlay);
+				var overlayImg = $compile('<img lb-overlay-img />')(scope);
+				overlay.append(overlayImg);
+				overlayImg.attr('src',scope.lb.src);
 			});
 
 		}
