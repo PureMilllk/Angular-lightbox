@@ -40,7 +40,7 @@ module.exports = function(grunt) {
         noarg: true,
         sub: true,
         undef: true,
-        unused: true,
+        //unused: true,
         boss: true,
         eqnull: true,
         browser: true,
@@ -66,6 +66,28 @@ module.exports = function(grunt) {
       lib_test: {
         files: '<%= jshint.lib_test.src %>',
         tasks: ['jshint:lib_test', 'qunit']
+      },
+      coffee: {
+        files: 'src/*.coffee',
+        tasks: ['coffee']
+      },
+      jshint: {
+        files: 'lib/*.js',
+        tasks: ['jshint']
+      }
+    },
+    coffee: {
+      options: {
+        bare: false,
+        join: false,
+        separator: ';'
+      },
+      target: {
+        expand: true,
+        cwd: 'src/',
+        src: '*.coffee',
+        dest: 'lib/',
+        ext: '.js'
       }
     }
   });
@@ -76,8 +98,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-coffee');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+  grunt.registerTask('default', ['coffee', 'jshint', 'uglify']); //'qunit', 'concat'
 
 };
