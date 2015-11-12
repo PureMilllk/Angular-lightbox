@@ -101,6 +101,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-coffee');
 
   // Default task.
-  grunt.registerTask('default', ['coffee', 'jshint', 'uglify']); //'qunit', 'concat'
+  grunt.registerTask('default', ['coffee', 'uglify']); //'jshint', 'uglify']); //'qunit', 'concat'
 
 };

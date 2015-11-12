@@ -2,7 +2,7 @@
 
 this.angular.module "angularLightbox", []
 	.directive "lbCellRoot", [
-		->
+		() ->
 			link = (scope, element, attrs) ->
 				element.css 
 					listStyle: "none"
@@ -15,7 +15,7 @@ this.angular.module "angularLightbox", []
 			link: link
 	]
 	.directive "lbCellRoom", [
-		->
+		() ->
 			link = (scope, element, attrs) ->
 				element.css
 					display: "inline-block"
@@ -49,7 +49,7 @@ this.angular.module "angularLightbox", []
 			link: link
 	]
 	.directive "lbCellImg", [
-		->
+		() ->
 			link = (scope, element, attrs) ->
 				element.css
 					display: "block"
@@ -58,7 +58,7 @@ this.angular.module "angularLightbox", []
 			link: link
 	]
 	.directive "lbOverlay", [
-		->
+		() ->
 			link = (scope, element, attrs) ->
 				element.css
 					position: "absolute"
@@ -76,7 +76,7 @@ this.angular.module "angularLightbox", []
 			link: link
 	]
 	.directive "lbOverlayImg", [
-		->
+		() ->
 			link = (scope, element, attrs) ->
 				element.css
 					marginTop: "10%"
@@ -84,7 +84,7 @@ this.angular.module "angularLightbox", []
 			link: link
 	]
 	.directive "lbCell", [
-		->
+		() ->
 			restrict = "AE"
 			template = '
 				<li lb-cell-room ng-repeat="lb in lightboxImgs">
