@@ -6,10 +6,6 @@ AngularJS directive for lightbox effect.
 $ git clone https://github.com/PureMilllk/Angular-lightbox.git
 ```
 
-###HTML
-
-Under folder: view_demo/html_demo
-
 ###Jade
 
 ```
